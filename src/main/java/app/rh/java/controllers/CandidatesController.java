@@ -3,6 +3,7 @@ package app.rh.java.controllers;
 import app.rh.java.DTOs.CandidatesDTO;
 import app.rh.java.entitys.Candidates;
 import app.rh.java.repositiry.CandidateRepository;
+import app.rh.java.services.CandidatesService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,11 @@ import java.util.List;
 public class CandidatesController {
 
     private CandidateRepository candidateRepository;
+    private CandidatesService candidatesService;
 
-    public CandidatesController(CandidateRepository candidateRepository) {
+    public CandidatesController(CandidateRepository candidateRepository, CandidatesService candidatesService) {
         this.candidateRepository = candidateRepository;
+        this.candidatesService = candidatesService;
     }
 
     @GetMapping("/")
@@ -27,15 +30,8 @@ public class CandidatesController {
 
     @PostMapping("/")
     public ResponseEntity<Candidates> createCandidates(@Valid @RequestBody CandidatesDTO candidatesDTO){
-        Candidates candidate = new Candidates();
 
-        candidate.setCpf(candidatesDTO.getCpf());
-        candidate.setEmail(candidatesDTO.getEmail());
-        candidate.setName(candidatesDTO.getName());
-
-        Candidates savedCandidate = candidateRepository.save(candidate);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCandidate);
+        return candidatesService.createCandidates(candidatesDTO);
 
     }
 }
