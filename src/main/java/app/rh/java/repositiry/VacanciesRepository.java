@@ -9,4 +9,7 @@ import java.util.UUID;
 public interface VacanciesRepository extends JpaRepository<Vacancies, UUID> {
 
     public List<Vacancies> findByName(String name);
+
+    public Vacancies findByID(UUID id);
+
 }
