@@ -1,6 +1,7 @@
 package app.rh.java.DTOs;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public class VacanciesDTO {
     @NotEmpty
     private String description;
 
-    @NotEmpty
+    @NotNull
     private LocalDate date;
 
     private BigDecimal wage;
