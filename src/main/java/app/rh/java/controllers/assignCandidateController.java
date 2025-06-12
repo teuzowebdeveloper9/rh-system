@@ -21,15 +21,15 @@ public class assignCandidateController {
     }
 
     @PostMapping
-    public String assignCandidate(@Valid @RequestBody RegisterDTO registerDTO) throws Exception {
+    public Vacancies assignCandidate(@Valid @RequestBody RegisterDTO registerDTO) throws Exception {
 
         UUID CandidateID = registerDTO.getCandidateID();
         UUID VacancyID = registerDTO.getVacancyID();
 
 
-        Vacancies response = registerService.assignCandidateToVacancy(CandidateID, VacancyID);
+        return registerService.assignCandidateToVacancy(CandidateID, VacancyID);
 
-         return  response.toString();
+
     }
 
 }

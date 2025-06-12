@@ -17,6 +17,7 @@ public class Candidates {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
     @ManyToOne
