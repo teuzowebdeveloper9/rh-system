@@ -28,10 +28,7 @@ public class VacanciesController {
      return vacanciesRepository.findAll();
    }
 
-   @GetMapping("/search")
-   public List<Vacancies> searchByName(@RequestParam String name){
-        return vacanciesRepository.findByName(name);
-   }
+
 
    @PostMapping("/")
    public ResponseEntity<Vacancies>  createVacancies(@Valid @RequestBody VacanciesDTO dto){
