@@ -28,6 +28,7 @@ public class RegisterService {
 
 
         vacacy.getCandidates().add(candidate);
+        candidate.setVacancies(vacacy);
         return vacanciesRepository.save(vacacy);
     }
 }
