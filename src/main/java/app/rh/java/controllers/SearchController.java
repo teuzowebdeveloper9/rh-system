@@ -1,10 +1,10 @@
 package app.rh.java.controllers;
 
+
 import app.rh.java.entitys.Vacancies;
-import app.rh.java.repositiry.VacanciesRepository;
+import app.rh.java.services.SearchServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -12,15 +12,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/search")
 public class SearchController {
-    private VacanciesRepository vacanciesRepository;
 
+    private SearchServices searchServices;
 
-    public SearchController(VacanciesRepository vacanciesRepository){
-        this.vacanciesRepository = vacanciesRepository;
+    public SearchController(SearchServices searchServices) {
+        this.searchServices = searchServices;
     }
 
     @GetMapping
-    public List<Vacancies> searchByName(@RequestParam String name){
-        return vacanciesRepository.findByName(name);
+    public List<Vacancies> searchByName(String name) throws Exception{
+
+        return searchServices.searchByName(name);
     }
 }
