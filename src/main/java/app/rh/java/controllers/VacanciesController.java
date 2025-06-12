@@ -3,11 +3,9 @@ package app.rh.java.controllers;
 import app.rh.java.DTOs.VacanciesDTO;
 import app.rh.java.entitys.Vacancies;
 import app.rh.java.repositiry.VacanciesRepository;
-import app.rh.java.repositiry.CandidateRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,11 +14,10 @@ import java.util.List;
 @RequestMapping("/Vacancies")
 public class VacanciesController {
    private VacanciesRepository vacanciesRepository;
-   private CandidateRepository candidateRepository;
 
-    public VacanciesController(VacanciesRepository vacanciesRepository, CandidateRepository candidateRepository) {
+    public VacanciesController(VacanciesRepository vacanciesRepository) {
         this.vacanciesRepository = vacanciesRepository;
-        this.candidateRepository = candidateRepository;
+
     }
 
     @GetMapping("/")
