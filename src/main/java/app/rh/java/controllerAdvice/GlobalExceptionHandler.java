@@ -1,5 +1,6 @@
 package app.rh.java.controllerAdvice;
 
+import app.rh.java.exceptions.CandidatesNotFoundException;
 import app.rh.java.exceptions.VacanciesNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +23,14 @@ public class GlobalExceptionHandler {
         body.put("message", ex.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(CandidatesNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleCandidatesNotFoundException(CandidatesNotFoundException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.NOT_FOUND.value());
+        body.put("error", "candidato não encontrado");
+        body.put("message", ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
 }

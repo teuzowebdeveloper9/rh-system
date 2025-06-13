@@ -10,4 +10,6 @@ public interface CandidateRepository extends JpaRepository<Candidates, UUID> {
 
 
     public Optional<Candidates> findByID(UUID id);
+
+    public Optional<Candidates> findByName(String name);
 }
