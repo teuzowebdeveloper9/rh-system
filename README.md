@@ -30,8 +30,6 @@ The project follows a clean architecture with the following main directories:
 - **Language**: Java
 - **Database**: PostgreSQL
 - **Containerization**: Docker
-- **API Documentation**: Swagger (OpenAPI)
-- **Testing**: JUnit and Mockito
 
 ## API Endpoints
 
