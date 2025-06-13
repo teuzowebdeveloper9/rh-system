@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Vacancies")
+@Table(name = "vacancies")
 public class Vacancies implements Serializable {
 
     @Serial

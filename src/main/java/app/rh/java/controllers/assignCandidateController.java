@@ -27,7 +27,7 @@ public class assignCandidateController {
         UUID VacancyID = registerDTO.getVacancyID();
 
 
-        return registerService.assignCandidateToVacancy(CandidateID, VacancyID);
+    return registerService.assignCandidateToVacancy(VacancyID, CandidateID);
 
 
     }

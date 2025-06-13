@@ -1,18 +1,39 @@
-version: '3.9'
+version: '3.8'
 
 services:
+  # Serviço do PostgreSQL
   db:
-    image: postgres:15
-    container_name: "${CONTAINER_NAME}"
-    restart: always
+    image: postgres:15 
+    container_name: postgres_db
     environment:
-      POSTGRES_DB: "${POSTGRES_DB}"
-      POSTGRES_USER: "${USER_DB}"
-      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: rh          
+      POSTGRES_USER: teuzo      
+      POSTGRES_PASSWORD: rh123  
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "5432:5432"
+      - "5432:5432" 
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data/pgdata 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U teuzo -d rh"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: . 
+    container_name: java_app
+    ports:
+      - "8080:8080" 
+    depends_on:
+      db:
+        condition: service_healthy 
+    environment: 
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/rh 
+      SPRING_DATASOURCE_USERNAME: teuzo
+      SPRING_DATASOURCE_PASSWORD: rh123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
 
 volumes:
-  postgres_data:
+  pgdata:
